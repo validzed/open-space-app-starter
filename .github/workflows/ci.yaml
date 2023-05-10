@@ -6,12 +6,8 @@ on:
       - main
 
 jobs:
-  test:
+  automation-test-jobs:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -19,6 +15,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Run Automated Test
+      - name: npm install and test
         run: |
           npm install
+          npm run ci:test
